@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     private int currentRound;
 
@@ -10,10 +8,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] InternalEventChannel GameResetChannel;
     [SerializeField] InternalEventChannel GameRoundChannel;
     [SerializeField] InternalEventChannel GameOverChannel;
+    [SerializeField] InternalEventChannel GameSwitchTurnChannel;
 
-    private void StartGame(){
+    [Header("Listening To")]
+    [SerializeField] InternalEventChannel GameTimerChannel;
+
+    private void Start(){
         currentRound = 0;
 
+        GameResetChannel.RaiseEvent(true);
     }
     private void InitRound(){
 

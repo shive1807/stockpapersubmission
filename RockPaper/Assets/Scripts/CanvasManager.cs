@@ -5,22 +5,19 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour
 {
     [Header("Listening To")]
-    [SerializeField] InternalEventChannel GameManagerResetEvent;
+    [SerializeField] InternalEventChannel GameResetChannel;
     [SerializeField] InternalEventChannel GameRoundChannel;
     [SerializeField] InternalEventChannel GameOverChannel;
 
 
     private void OnEnable(){
-        GameManagerResetEvent.ActionTriggered += Reset;
+        GameResetChannel.ActionTriggered += ResetCanvas;
     }   
 
     private void OnDisable(){
-        GameManagerResetEvent.ActionTriggered -= Reset;
+        GameResetChannel.ActionTriggered -= ResetCanvas;
     }
 
-    private void Reset(bool reset = false){
-
+    private void ResetCanvas(bool reset = default){
     }
-
-
 }
