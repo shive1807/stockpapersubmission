@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum Moves{
-    Stone,
+    Stone = 0,
     Paper,
     Scissors,
     Lizard,
@@ -12,42 +12,39 @@ public enum Moves{
 
 public class TurnManager : MonoBehaviour
 {
-    private bool turnPlayed;
-    private bool isTimeUp;
     private Button[] moves;
 
     [Header("Listening To")]
-    [SerializeField] InternalEventChannel GameResetChannel;
-    [SerializeField] InternalEventChannel GameRoundChannel;
-    [SerializeField] InternalEventChannel GameOverChannel;
-    [SerializeField] InternalEventChannel GameSwitchTurnChannel;
-    [SerializeField] InternalEventChannel GameTimerChannel;
+    [SerializeField] private InternalEventChannel   GameResetChannel;
+    [SerializeField] private InternalEventChannel   GameRoundChannel;
+    [SerializeField] private InputEventChannel      RoundResultChannel;
+    
+    [Header("Broadcasting To")]
+    [SerializeField] InputEventChannel PlayerTurnPlayed;
 
 
     private void OnEnable()
     {
-        GameResetChannel.ActionTriggered += ResetTurn;
-        GameRoundChannel.ActionTriggered += RoundOver;
-        GameOverChannel.ActionTriggered += GameOver;
-        GameSwitchTurnChannel.ActionTriggered += SwitchTurn;
-        GameTimerChannel.ActionTriggered += TimerStatus;
+        GameResetChannel.ActionTriggered        += ResetTurn;
+        GameRoundChannel.ActionTriggered        += OnRoundStarts;
+        RoundResultChannel.ActionTriggered      += RoundResult;
     }
     private void OnDisable()
     {
-        GameResetChannel.ActionTriggered -= ResetTurn;
-        GameRoundChannel.ActionTriggered -= RoundOver;
-        GameOverChannel.ActionTriggered -= GameOver;
-        GameSwitchTurnChannel.ActionTriggered -= SwitchTurn;
-        GameTimerChannel.ActionTriggered -= TimerStatus;
+        GameResetChannel.ActionTriggered        -= ResetTurn;
+        GameRoundChannel.ActionTriggered        -= OnRoundStarts;
+        RoundResultChannel.ActionTriggered      -= RoundResult;
     }
 
-    private void TimerStatus(bool timeUp)
+    private void RoundResult(int result)
     {
-
+        if(result.Equals((int)RoundResults.TimeUp)){
+            SetControlsInteractable(false);
+        }
     }
-    private void SwitchTurn(bool success = default)
+    private void OnRoundStarts(bool success = default)
     {
-
+        SetControlsInteractable(true);
     }
 
     private void ResetTurn(bool reset = default)
@@ -58,22 +55,28 @@ public class TurnManager : MonoBehaviour
 
         SetControlsInteractable(false);
     }
-
-    private void RoundOver(bool success = default)
-    {
-
-    }
-
-    private void GameOver(bool success = default)
-    {
-
-    }
-
     private void SetControlsInteractable(bool state)
     {
         for (int i = 0; i < moves.Length; i++)
         {
+            moves[i].gameObject.SetActive(true);
             moves[i].interactable = state;
+            if(state == true){
+                moves[i].onClick.AddListener(()=>{
+                    TurnPlayed();
+                });
+            }
+        }
+    }
+    private void TurnPlayed(){
+        var index = EventSystem.current.currentSelectedGameObject.transform.GetSiblingIndex();
+        PlayerTurnPlayed.RaiseEvent(index);
+
+        for(int k = 0; k<moves.Length; k++){
+            if(k.Equals(index)){
+                continue;
+            }
+            moves[k].gameObject.SetActive(false);
         }
     }
 }

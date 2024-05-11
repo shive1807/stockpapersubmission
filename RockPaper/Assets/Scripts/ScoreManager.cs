@@ -7,42 +7,41 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Listening To")]
     [SerializeField] InternalEventChannel GameResetChannel;
-    [SerializeField] InternalEventChannel GameRoundChannel;
-    [SerializeField] InternalEventChannel GameOverChannel;
+    [SerializeField] InputEventChannel    RoundResultChannel;
 
     private void Start(){
         score = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     private void OnEnable(){
-        GameResetChannel.ActionTriggered    += OnReset;
-        GameRoundChannel.ActionTriggered    += OnRoundChanged;
-        GameOverChannel.ActionTriggered     += OnGameOver;
+        GameResetChannel.ActionTriggered   += OnReset;
+        RoundResultChannel.ActionTriggered += OnRoundResult;
     }
 
     private void OnDisable(){
-        GameResetChannel.ActionTriggered    -= OnReset;
-        GameRoundChannel.ActionTriggered    -= OnRoundChanged;
-        GameOverChannel.ActionTriggered     -= OnGameOver;
+        GameResetChannel.ActionTriggered   -= OnReset;
+        RoundResultChannel.ActionTriggered -= OnRoundResult;
     }
 
     private void OnReset(bool reset = default){
         ScoreCount = 0;
         UpdateText();
     }
-    private void OnRoundChanged(bool success = default)
-    {
-        ScoreCount++;
-        UpdateText();
+    private void OnRoundResult(int result){
+        if(result == 1){
+            ScoreCount++;
+            UpdateText();
+        }else if(result.Equals(RoundResults.OpponentWon) || result.Equals(RoundResults.TimeUp)){
+            OnGameOver();
+        }
     }
-
-
     private void OnGameOver(bool success = default)
     {
         var highScore = PlayerPrefs.GetInt(Constants.HIGH_SCORE, 0);
 
         if(highScore < ScoreCount){//New high score
             PlayerPrefs.SetInt(Constants.HIGH_SCORE, ScoreCount);
+
             //Trigger an event here to show ui for new high score achieved.
         }
     }
