@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
@@ -8,7 +6,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] InternalEventChannel GameResetChannel;
     [SerializeField] InternalEventChannel GameRoundChannel;
     [SerializeField] InternalEventChannel GameOverChannel;
-
 
     private void OnEnable(){
         GameResetChannel.ActionTriggered += ResetCanvas;

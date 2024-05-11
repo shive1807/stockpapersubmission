@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288c1e191e0d947b29531c91206e3844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameResetChannel: {fileID: 0}
+  GameResetChannel: {fileID: 11400000, guid: 57564f23718ee48cb94af3a2c7361eff, type: 2}
   GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
   GameOverChannel: {fileID: 11400000, guid: 8236116241960400cac55115b0ef49f2, type: 2}
 --- !u!1 &146917475
@@ -455,6 +455,7 @@ MonoBehaviour:
   GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
   GameOverChannel: {fileID: 11400000, guid: 8236116241960400cac55115b0ef49f2, type: 2}
   GameSwitchTurnChannel: {fileID: 11400000, guid: 22d3e8daa00ef402bae1c721bc935b2d, type: 2}
+  GameTimerChannel: {fileID: 11400000, guid: bb1f5fd16674349968aa9af368c70766, type: 2}
 --- !u!1 &147821972
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +467,7 @@ GameObject:
   - component: {fileID: 147821973}
   - component: {fileID: 147821975}
   - component: {fileID: 147821974}
+  - component: {fileID: 147821976}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -532,6 +534,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147821972}
   m_CullTransparentMesh: 1
+--- !u!114 &147821976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147821972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c661b588df6dd4c19866ef10f0830e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameTimerChannel: {fileID: 11400000, guid: bb1f5fd16674349968aa9af368c70766, type: 2}
+  GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,9 +1037,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c775abda9df41f69c9c99e29f73437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameResetChannel: {fileID: 0}
-  GameRoundChannel: {fileID: 0}
-  GameOverChannel: {fileID: 0}
+  GameResetChannel: {fileID: 11400000, guid: 57564f23718ee48cb94af3a2c7361eff, type: 2}
+  GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
+  GameOverChannel: {fileID: 11400000, guid: 8236116241960400cac55115b0ef49f2, type: 2}
 --- !u!1 &1145221006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,7 +1102,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.079
+  m_FillAmount: 0.164
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1146,8 +1162,8 @@ MonoBehaviour:
   GameResetChannel: {fileID: 11400000, guid: 57564f23718ee48cb94af3a2c7361eff, type: 2}
   GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
   GameOverChannel: {fileID: 11400000, guid: 8236116241960400cac55115b0ef49f2, type: 2}
-  GameSwitchTurnChannel: {fileID: 0}
-  GameTimerChannel: {fileID: 0}
+  GameSwitchTurnChannel: {fileID: 11400000, guid: 22d3e8daa00ef402bae1c721bc935b2d, type: 2}
+  GameTimerChannel: {fileID: 11400000, guid: bb1f5fd16674349968aa9af368c70766, type: 2}
 --- !u!1 &1355084415
 GameObject:
   m_ObjectHideFlags: 0

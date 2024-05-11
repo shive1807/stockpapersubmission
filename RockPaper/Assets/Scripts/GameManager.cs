@@ -19,7 +19,8 @@ public class GameManager : Singleton<GameManager>
         GameResetChannel.RaiseEvent(true);
     }
     private void InitRound(){
-
+        currentRound++;
+        
     }
 
 }
