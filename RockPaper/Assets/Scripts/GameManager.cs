@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator GoToHomeScreen(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(0);
     }
 
