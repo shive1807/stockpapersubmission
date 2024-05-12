@@ -327,7 +327,6 @@ GameObject:
   - component: {fileID: 141378738}
   - component: {fileID: 141378737}
   - component: {fileID: 141378736}
-  - component: {fileID: 141378740}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -412,10 +411,10 @@ RectTransform:
   m_Children:
   - {fileID: 1696706113}
   - {fileID: 859574580}
-  - {fileID: 1083240590}
   - {fileID: 147821973}
   - {fileID: 146917476}
   - {fileID: 1968684295}
+  - {fileID: 1083240590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -423,21 +422,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &141378740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141378735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 288c1e191e0d947b29531c91206e3844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameResetChannel: {fileID: 11400000, guid: 57564f23718ee48cb94af3a2c7361eff, type: 2}
-  GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
-  GameOverChannel: {fileID: 11400000, guid: 8236116241960400cac55115b0ef49f2, type: 2}
 --- !u!1 &146917475
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +459,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 880, y: 700}
+  m_SizeDelta: {x: 880, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &146917477
 MonoBehaviour:
@@ -490,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.023584902, g: 0.9212537, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2015,7 +1999,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -300}
-  m_SizeDelta: {x: 880, y: 700}
+  m_SizeDelta: {x: 880, y: 500}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1968684296
 MonoBehaviour:
@@ -2030,7 +2014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9716981, g: 0.1512549, b: 0.1512549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

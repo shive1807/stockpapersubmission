@@ -20,7 +20,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private InputEventChannel      RoundResultChannel;
     
     [Header("Broadcasting To")]
-    [SerializeField] InputEventChannel PlayerTurnPlayed;
+    [SerializeField] private InputEventChannel PlayerTurnPlayed;
 
     private bool turnPlayed = false;
 
@@ -76,6 +76,7 @@ public class TurnManager : MonoBehaviour
         var index = EventSystem.current.currentSelectedGameObject.transform.GetSiblingIndex();
         PlayerTurnPlayed.RaiseEvent(index);
 
+        //Disable other buttons.
         for(int k = 0; k<moves.Length; k++){
             if(k.Equals(index)){
                 continue;
