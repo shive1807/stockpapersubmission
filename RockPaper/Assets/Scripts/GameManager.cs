@@ -10,8 +10,6 @@ public enum RoundResults{
 }
 public class GameManager : MonoBehaviour
 {
-
-
     [Header ("Broadcasting To")]
     [SerializeField] InternalEventChannel GameResetChannel;
     [SerializeField] InternalEventChannel GameRoundChannel;
@@ -24,12 +22,10 @@ public class GameManager : MonoBehaviour
         GameResetChannel.RaiseEvent(true);
         InitRound();
     }
-    private void InitRound(){
-        GameRoundChannel.RaiseEvent(true);
-    }
-    private void OnEnable(){
-        RoundResultChannel.ActionTriggered += OnRoundResult;
-    }
+    private void InitRound() => GameRoundChannel.RaiseEvent(true);
+    private void OnEnable() => RoundResultChannel.ActionTriggered += OnRoundResult;
+
+
     private void OnDisable(){
         RoundResultChannel.ActionTriggered -= OnRoundResult;
     }

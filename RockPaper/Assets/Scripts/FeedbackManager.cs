@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class FeedbackManager : MonoBehaviour
 {
-    [SerializeField] InternalEventChannel GameResetChannel;
-    [SerializeField] InternalEventChannel GameRoundChannel;
-    [SerializeField] InputEventChannel RoundResultChannel;
-    [SerializeField] private TMPro.TextMeshProUGUI FeedbackText;
+    [Header("Listening To")]
+    [SerializeField] private InternalEventChannel   GameResetChannel;
+    [SerializeField] private InternalEventChannel   GameRoundChannel;
+    [SerializeField] private InputEventChannel      RoundResultChannel;
+    [SerializeField] private TMPro.TextMeshProUGUI  FeedbackText;
 
     private void OnEnable(){
         GameResetChannel.ActionTriggered += OnGameReset;
@@ -19,9 +20,7 @@ public class FeedbackManager : MonoBehaviour
         RoundResultChannel.ActionTriggered -= OnRoundResult;
     }
 
-    private void OnGameReset(bool reset = false){
-        FeedbackText.text = "";
-    }
+    private void OnGameReset(bool reset = false) => FeedbackText.text = "";
 
     private void OnGameRoundChange(bool reset = false){
         FeedbackText.text = "Please select a move";
