@@ -30,7 +30,6 @@ public class ScoreManager : MonoBehaviour
     private void OnRoundResult(int result){
         if(result.Equals((int)RoundResults.PlayerWon))
         {
-            Debug.Log("Score Count " + ScoreCount);
             ScoreCount++;
             UpdateText();
         }else if(result.Equals((int)RoundResults.OpponentWon) || result.Equals((int)RoundResults.TimeUp)){
