@@ -13,7 +13,7 @@ public enum RoundResults{
     OpponentWon = -1,
     TimeUp = -2
 }
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
 
     private GameState state;
@@ -49,11 +49,16 @@ public class GameManager : Singleton<GameManager>
             StartCoroutine(GoToHomeScreen());//call game over and move to home screen.
             return;
         }
-        GameRoundChannel.RaiseEvent(true);
+        StartCoroutine(NextRound());
     }
 
     private IEnumerator GoToHomeScreen(){
         yield return new WaitForSeconds(1f);
-        // SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator NextRound(){
+        yield return new WaitForSeconds(2f);
+        GameRoundChannel.RaiseEvent(true);
     }
 }

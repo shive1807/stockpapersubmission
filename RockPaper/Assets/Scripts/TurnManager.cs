@@ -22,6 +22,7 @@ public class TurnManager : MonoBehaviour
     [Header("Broadcasting To")]
     [SerializeField] InputEventChannel PlayerTurnPlayed;
 
+    private bool turnPlayed = false;
 
     private void OnEnable()
     {
@@ -44,6 +45,7 @@ public class TurnManager : MonoBehaviour
     }
     private void OnRoundStarts(bool success = default)
     {
+        turnPlayed = false;
         SetControlsInteractable(true);
     }
 
@@ -69,6 +71,8 @@ public class TurnManager : MonoBehaviour
         }
     }
     private void TurnPlayed(){
+        if (turnPlayed) return;
+
         var index = EventSystem.current.currentSelectedGameObject.transform.GetSiblingIndex();
         PlayerTurnPlayed.RaiseEvent(index);
 
@@ -78,5 +82,6 @@ public class TurnManager : MonoBehaviour
             }
             moves[k].gameObject.SetActive(false);
         }
+        turnPlayed = true;
     }
 }

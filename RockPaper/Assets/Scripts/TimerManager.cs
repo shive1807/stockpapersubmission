@@ -6,8 +6,6 @@ public class TimerManager : MonoBehaviour
 {
     [SerializeField] private Image FillerImage;
     [SerializeField] private TMPro.TextMeshProUGUI TimerText;
-    [SerializeField] private TMPro.TextMeshProUGUI TimeOutText;
-
     private float currentTimer = 0.0f;
 
     [Header("Broadcasting To")]
@@ -15,16 +13,16 @@ public class TimerManager : MonoBehaviour
     
     [Header("Listening To")]
     [SerializeField] InternalEventChannel GameRoundChannel;
-    [SerializeField] InternalEventChannel GameResetChannel;
+    [SerializeField] InputEventChannel PlayerTurnChannel;
 
     private void OnEnable(){
         GameRoundChannel.ActionTriggered += OnRoundStarts;
-        GameResetChannel.ActionTriggered += OnGameReset;
+        PlayerTurnChannel.ActionTriggered += OnPlayedTurn;
     }
 
     private void OnDisable(){
         GameRoundChannel.ActionTriggered -= OnRoundStarts;
-        GameResetChannel.ActionTriggered -= OnGameReset;
+        PlayerTurnChannel.ActionTriggered -= OnPlayedTurn;
     }
 
     private void OnRoundStarts(bool start = false){
@@ -34,12 +32,10 @@ public class TimerManager : MonoBehaviour
         Debug.Log("On Round Starts");
     }
 
-    private void OnGameReset(bool reset = false){
-        if(reset){
-            TimeOutText.gameObject.SetActive(false);
-        }
+    private void OnPlayedTurn(int turn)
+    {
+        StopAllCoroutines();
     }
-
     private IEnumerator TurnTimerOn(){
         Debug.Log("Round End Called");
 
@@ -54,6 +50,7 @@ public class TimerManager : MonoBehaviour
     }
 
     private void ResetTimer(){
+        StopAllCoroutines();
         TimerText.text = currentTimer.ToString();
         FillerImage.fillAmount = 1.0f;
     }

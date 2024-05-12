@@ -623,10 +623,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FillerImage: {fileID: 1145221008}
   TimerText: {fileID: 1583917101}
-  TimeOutText: {fileID: 1083240591}
   RoundResultChannel: {fileID: 11400000, guid: d12fcb8d1dca746efabb6d918d9473ea, type: 2}
   GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
-  GameResetChannel: {fileID: 11400000, guid: 57564f23718ee48cb94af3a2c7361eff, type: 2}
+  PlayerTurnChannel: {fileID: 11400000, guid: 98a12dc0f33e0496799a8ffc699322ac, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,8 +1128,9 @@ GameObject:
   - component: {fileID: 1083240590}
   - component: {fileID: 1083240592}
   - component: {fileID: 1083240591}
+  - component: {fileID: 1083240593}
   m_Layer: 5
-  m_Name: TimeOut
+  m_Name: FeedbackText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TIME OUT
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1252,6 +1252,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083240589}
   m_CullTransparentMesh: 1
+--- !u!114 &1083240593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083240589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ca675792f6d4b109e65e099c4f8fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameResetChannel: {fileID: 11400000, guid: 57564f23718ee48cb94af3a2c7361eff, type: 2}
+  GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
+  RoundResultChannel: {fileID: 11400000, guid: d12fcb8d1dca746efabb6d918d9473ea, type: 2}
+  FeedbackText: {fileID: 1083240591}
 --- !u!1 &1145221006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,6 +2066,7 @@ MonoBehaviour:
   GameRoundChannel: {fileID: 11400000, guid: c9106e4b22ec246ba93ae037fa2c8db6, type: 2}
   PlayerInputChannel: {fileID: 11400000, guid: 98a12dc0f33e0496799a8ffc699322ac, type: 2}
   RoundResultChannel: {fileID: 11400000, guid: d12fcb8d1dca746efabb6d918d9473ea, type: 2}
+  AiInputChannel: {fileID: 11400000, guid: 1522e5749816548809def80d8cc2cdcb, type: 2}
 --- !u!1 &1986063771
 GameObject:
   m_ObjectHideFlags: 0

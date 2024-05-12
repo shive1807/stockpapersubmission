@@ -14,6 +14,7 @@ public class AiTurnManager : MonoBehaviour
 
     [Header("Broadcasting To")]
     [SerializeField] private InputEventChannel RoundResultChannel;
+    [SerializeField] private InputEventChannel AiInputChannel;
 
 
     private void OnEnable(){
@@ -38,9 +39,8 @@ public class AiTurnManager : MonoBehaviour
     *********************************************************************/
     private void OnPlayerInput(int input){
         var cpuTurn = PlayCPUTurn();
+        AiMoveImage.sprite = moveIcon[cpuTurn];
         RoundLogicResult(input, cpuTurn);
-
-        
     }
     private int PlayCPUTurn()//Controll the opponent randomness from here.
     {
@@ -50,30 +50,35 @@ public class AiTurnManager : MonoBehaviour
     /********************************************************************
     **************************CORE GAME LOGIC****************************
     *********************************************************************/
-    private int[,] Results =
-    {
-        {0, 1, -1, 1, -1},
-        {-1, 0, 1, 1, -1},
-        {1, -1, 0, -1, 1},
-        {-1, 1, -1, 0, 1},
-        {1, -1, 1, -1, 0}
-    };
+    readonly int[,] results = new int[,] {
+    {  0,  1, -1, -1,  1 },  // Rock
+    { -1,  0,  1,  1, -1 },  // Paper
+    {  1, -1,  0, -1,  1 },  // Scissors
+    {  1, -1,  1,  0, -1 },  // Lizard
+    { -1,  1, -1,  1,  0 }   // Spock
+};
 
     private void RoundLogicResult(int playerMove, int cpuMove)
     {
-        var result = Results[cpuMove, playerMove];
+        // Debug.Log(playerMove + " pm " + cpuMove + " cm");
+        // Debug.Log(results[cpuMove, playerMove] + " results");
+        var result = results[cpuMove, playerMove];
         RoundResultChannel.RaiseEvent(result);
-        if (result == 0)
-        {
-            Debug.Log("Tie");
-        }
-        else if (result == 1)
-        {
-            Debug.Log("CPU wins");
-        }
-        else
-        {
-            Debug.Log("Player wins");
-        }
+        // if (result == 0)
+        // {
+        //     Debug.Log("Tie");
+        // }
+        // else if (result == -1)
+        // {
+        //     Debug.Log("CPU wins");
+        // }
+        // else if (result == -1)
+        // {
+        //     Debug.Log("Time Out");
+        // }
+        // else
+        // {
+        //     Debug.Log("Player wins");
+        // }
     }
 }   
