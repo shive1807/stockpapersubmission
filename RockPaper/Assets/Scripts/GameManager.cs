@@ -1,12 +1,7 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
-public enum GameState{
-    Start, 
-    Playing,
-    End
-}
 public enum RoundResults{
     PlayerWon = 1,
     Tie = 0,
@@ -16,7 +11,6 @@ public enum RoundResults{
 public class GameManager : MonoBehaviour
 {
 
-    private GameState state;
 
     [Header ("Broadcasting To")]
     [SerializeField] InternalEventChannel GameResetChannel;
@@ -27,12 +21,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] InputEventChannel RoundResultChannel;
 
     private void Start(){
-        state = GameState.Start;
         GameResetChannel.RaiseEvent(true);
         InitRound();
     }
     private void InitRound(){
-        state = GameState.Playing;
         GameRoundChannel.RaiseEvent(true);
     }
     private void OnEnable(){
